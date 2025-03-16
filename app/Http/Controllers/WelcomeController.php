@@ -14,6 +14,6 @@ class WelcomeController extends Controller
 
         $activeMenu = 'dashboard';
 
-        return view('Praktikum.welcome', ['breadcrumb' => $breadcrumb, 'activeMenu' => $activeMenu]);
+        return view('welcome', ['breadcrumb' => $breadcrumb, 'activeMenu' => $activeMenu]);
     }
 }
