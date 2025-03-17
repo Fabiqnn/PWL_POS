@@ -49,9 +49,7 @@ class UserController extends Controller
                 $btn .= '<a href="' . url('/user/' . $user->user_id . '/edit') . '" class="btn btn-warning btn-sm">Edit</a> ';
                 $btn .= '<form class="d-inline-block" method="POST" action="' .
                     url('/user/' . $user->user_id) . '">'
-                    . csrf_field() . method_field('DELETE') .
-                    '<button type="submit" class="btn btn-danger btn-sm" onclick="return
-confirm(\'Apakah Anda yakit menghapus data ini?\');">Hapus</button></form>';
+                    . csrf_field() . method_field('DELETE') . '<button type="submit" class="btn btn-danger btn-sm" onclick="return confirm(\'Apakah Anda yakin menghapus data ini?\');">Hapus</button>';
                 return $btn;
             })
             ->rawColumns(['aksi']) // memberitahu bahwa kolom aksi adalah html
@@ -84,7 +82,7 @@ confirm(\'Apakah Anda yakit menghapus data ini?\');">Hapus</button></form>';
             'level_id' => 'required|integer'
         ]);
 
-        UserModel::created([
+        UserModel::create([
             'username' => $request->username,
             'nama' => $request->nama,
             'password' =>bcrypt($request->password),
