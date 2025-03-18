@@ -83,14 +83,12 @@ class LevelController extends Controller
     public function update(Request $request, string $id) {
         $request->validate([
             'level_kode' => 'required|String|max:10|unique:m_level,level_kode,'.$id.',level_id',
-            'level_nama' => 'required|String|max:100',
-            'level_id' => 'required|integer'
+            'level_nama' => 'required|String|max:100'
         ]);
 
         LevelModel::find($id)->update([
             'level_kode' => $request->level_kode,
-            'level_nama' => $request->level_nama,
-            'level_id' => $request->level_id
+            'level_nama' => $request->level_nama
         ]);
 
         return redirect('/level')->with('success', 'Data level berhasil diubah');

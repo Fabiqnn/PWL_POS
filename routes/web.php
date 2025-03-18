@@ -4,6 +4,7 @@ use App\Http\Controllers\KategoriController;
 use App\Http\Controllers\LevelController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\WelcomeController;
+use App\Models\KategoriModel;
 use App\Models\UserModel;
 use Illuminate\Support\Facades\Route;
 
@@ -21,8 +22,14 @@ Route::group(['prefix' => 'user'], function () {
 });
 
 Route::group(['prefix' => 'kategori'], function () {
-    Route::get('/', [UserController::class, 'index']);
-
+    Route::get('/', [KategoriController::class, 'index']);
+    Route::get('/list', [KategoriController::class, 'list']);
+    Route::get('/create', [KategoriController::class, 'create']);
+    Route::post('/', [KategoriController::class, 'store']); 
+    Route::get('/{id}', [KategoriController::class, 'show']);
+    Route::get('/{id}/edit', [KategoriController::class, 'edit']);
+    Route::put('/{id}', [KategoriController::class, 'update']);
+    Route::delete('/{id}', [KategoriController::class, 'destroy']);
 });
 
 Route::group(['prefix' => 'level'], function () {
