@@ -176,6 +176,12 @@ class UserController extends Controller
             ->with('level', $level);
     }
 
+    public function show_ajax(string $id) {
+        $user = UserModel::with('level')->find($id);
+
+        return view('user.show_ajax', ['user' => $user]);
+    }
+
     public function store_ajax(Request $request)
     {
         if ($request->ajax() || $request->wantsJson()) {
