@@ -1,42 +1,22 @@
-<form action="{{ url('/barang/ajax') }}" method="POST" id="form-tambah">
+<form action="{{ url('/supplier/ajax') }}" method="POST" id="form-tambah">
     @csrf
     <div id="modal-master" class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Tambah Data Barang</h5>
+                <h5 class="modal-title" id="exampleModalLabel">Tambah Data Supplier</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
                         aria-hidden="true">&times;</span></button>
             </div>
             <div class="modal-body">
                 <div class="form-group">
-                    <label>Kategori Barang</label>
-                    <select name="kategori_id" id="kategori_id" class="form-control" required>
-                        <option value="">- Pilih Kategori -</option>
-                        @foreach ($kategori as $k)
-                            <option value="{{ $k->kategori_id }}">{{ $k->kategori_nama }}</option>
-                        @endforeach
-                    </select>
-                    <small id="error-kategori_id" class="error-text form-text text-danger"></small>
+                    <label>Kode Supplier</label>
+                    <input value="" type="text" name="kode_supplier" id="kode_supplier" class="form-control" required>
+                    <small id="error-kode_supplier" class="error-text form-text text-danger"></small>
                 </div>
                 <div class="form-group">
-                    <label>Kode Barang</label>
-                    <input value="" type="text" name="barang_kode" id="barang_kode" class="form-control" required>
-                    <small id="error-barang_kode" class="error-text form-text text-danger"></small>
-                </div>
-                <div class="form-group">
-                    <label>Nama Barang</label>
-                    <input value="" type="text" name="barang_nama" id="barang_nama" class="form-control" required>
-                    <small id="error-barang_nama" class="error-text form-text text-danger"></small>
-                </div>
-                <div class="form-group">
-                    <label>Harga Beli</label>
-                    <input value="" type="number" name="harga_beli" id="harga_beli" class="form-control" required>
-                    <small id="error-harga_beli" class="error-text form-text text-danger"></small>
-                </div>
-                <div class="form-group">
-                    <label>Harga Jual</label>
-                    <input value="" type="number" name="harga_jual" id="harga_jual" class="form-control" required>
-                    <small id="error-harga_jual" class="error-text form-text text-danger"></small>
+                    <label>Nama Supplier</label>
+                    <input value="" type="text" name="nama_supplier" id="nama_supplier" class="form-control" required>
+                    <small id="error-nama_supplier" class="error-text form-text text-danger"></small>
                 </div>
             </div>
             <div class="modal-footer">
@@ -50,30 +30,16 @@
     $(document).ready(function() {
         $("#form-tambah").validate({
             rules: {
-                kategori_id: {
+                kode_supplier: {
                     required: true,
-                    number: true
+                    minlength: 2,
+                    maxlength: 20
                 },
-                barang_kode: {
-                    required: true,
-                    minlength: 3,
-                    maxlength: 10
-                },
-                barang_nama: {
+                nama_supplier: {
                     required: true,
                     minlength: 3,
                     maxlength: 100
                 },
-                harga_beli: {
-                    required: true,
-                    min: 100000,      // Minimal 6 digit (100000)
-                    max: 99999999999999999999 // Maksimal 20 digit
-                },
-                harga_jual: {
-                    required: true,
-                    min: 100000,      // Minimal 6 digit (100000)
-                    max: 99999999999999999999 // Maksimal 20 digit
-                }
             },
             submitHandler: function(form) {
                 $.ajax({
@@ -88,7 +54,7 @@
                                 title: 'Berhasil',
                                 text: response.message
                             });
-                            dataBarang.ajax.reload();
+                            dataSupplier.ajax.reload();
                         } else {
                             $('.error-text').text('');
                             $.each(response.msgField, function(prefix, val) {
