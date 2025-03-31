@@ -73,7 +73,7 @@ Route::middleware('auth')->group(function() {
         Route::delete('/{id}', [KategoriController::class, 'destroy']);
     });
 
-    Route::group(['prefix' => 'barang'], function () {
+    Route::group(['prefix' => 'barang', 'middleware' => 'authorize:ADM,MNG'], function () {
         Route::get('/', [BarangController::class, 'index']);
         Route::get('/list', [BarangController::class, 'list']);
         Route::get('/create', [BarangController::class, 'create']);
