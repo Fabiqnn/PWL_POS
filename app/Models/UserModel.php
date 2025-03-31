@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Monolog\Level;
 
-class UserModel extends Model
+class UserModel extends Authenticatable
 {
     use HasFactory;
 
@@ -22,5 +22,13 @@ class UserModel extends Model
 
     public function level(): BelongsTo {
         return $this->belongsTo(LevelModel::class, 'level_id', 'level_id');
+    }
+
+    public function getRoleName(): string {
+        return $this->level->level_nama;
+    }
+
+    public function hasRole($role) {
+        return $this->level->level_kode == $role;
     }
 }
