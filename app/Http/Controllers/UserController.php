@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\LevelModel;
 use App\Models\UserModel;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
@@ -266,7 +267,13 @@ class UserController extends Controller
     public function delete_ajax(Request $request, $id) {
         if ($request->ajax() || $request->wantsJson()) {
             $user = UserModel::find($id);
-            if ($user) {
+            $userId = Auth::id();
+            if ($id == $userId) {
+                return response()->json([
+                    'status' => false,
+                    'message' => 'Tidak dapat menghapus akun sendiri'
+                ]);
+            } else if ($user) {
                 $user->delete();
                 return response()->json([
                     'status' => true,
