@@ -29,6 +29,10 @@ Route::middleware('auth')->group(function() {
         Route::post('/', [LevelController::class, 'store']);
         Route::get('/create_ajax', [LevelController::class, 'create_ajax']);
         Route::post('/ajax', [LevelController::class, 'store_ajax']);
+        Route::get('/import', [LevelController::class, 'import']);
+        Route::post('/import_ajax', [LevelController::class, 'import_ajax']);
+        Route::get('/export_excel', [LevelController::class, 'export_excel']);
+        Route::get('/export_pdf', [LevelController::class, 'export_pdf']);
         Route::get('/{id}/show_ajax', [LevelController::class, 'show_ajax']);
         Route::get('/{id}', [LevelController::class, 'show']);
         Route::get('/{id}/edit', [LevelController::class, 'edit']);
