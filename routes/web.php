@@ -82,6 +82,8 @@ Route::middleware('auth')->group(function() {
         Route::post('/', [BarangController::class, 'store']);
         Route::get('/create_ajax', [BarangController::class, 'create_ajax']);
         Route::post('/ajax', [BarangController::class, 'store_ajax']);
+        Route::get('/import', [BarangController::class, 'import']); // ajax form upload excel
+        Route::post('/import_ajax', [BarangController::class, 'import_ajax']); // ajax import excel
         Route::get('/{id}/show_ajax', [BarangController::class, 'show_ajax']);
         Route::get('/{id}', [BarangController::class, 'show']);
         Route::get('/{id}/edit', [BarangController::class, 'edit']);

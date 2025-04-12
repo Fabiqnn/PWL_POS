@@ -86,12 +86,12 @@
                     harga_beli: {
                         required: true,
                         min: 100000,      
-                        max: 99999999999999999999 
+                        max: 2147483647
                     },
                     harga_jual: {
                         required: true,
                         min: 100000,      
-                        max: 99999999999999999999 
+                        max: 2147483647
                     }
                 },
                 submitHandler: function(form) {
