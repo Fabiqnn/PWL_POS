@@ -78,21 +78,17 @@ Route::middleware('auth')->group(function() {
     Route::group(['prefix' => 'barang', 'middleware' => 'authorize:ADM,MNG'], function () {
         Route::get('/', [BarangController::class, 'index']);
         Route::get('/list', [BarangController::class, 'list']);
-        Route::get('/create', [BarangController::class, 'create']);
         Route::post('/', [BarangController::class, 'store']);
         Route::get('/create_ajax', [BarangController::class, 'create_ajax']);
         Route::post('/ajax', [BarangController::class, 'store_ajax']);
         Route::get('/import', [BarangController::class, 'import']); // ajax form upload excel
         Route::post('/import_ajax', [BarangController::class, 'import_ajax']); // ajax import excel
+        Route::get('/export_excel', [BarangController::class, 'export_excel']); // export excel
         Route::get('/{id}/show_ajax', [BarangController::class, 'show_ajax']);
-        Route::get('/{id}', [BarangController::class, 'show']);
-        Route::get('/{id}/edit', [BarangController::class, 'edit']);
-        Route::put('/{id}', [BarangController::class, 'update']);
         Route::get('/{id}/edit_ajax', [BarangController::class, 'edit_ajax']);
         Route::put('/{id}/update_ajax', [BarangController::class, 'update_ajax']);
         Route::get('/{id}/delete_ajax', [BarangController::class, 'confirm_ajax']);
         Route::delete('/{id}/delete_ajax', [BarangController::class, 'delete_ajax']);
-        Route::delete('/{id}', [BarangController::class, 'destroy']);
     });
 
     Route::group(['prefix' => 'supplier'], function () {

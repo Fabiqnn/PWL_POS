@@ -32,7 +32,7 @@
                         <select name="kategori_id" id="kategori_id" class="form-control" required>
                             <option value="">- Pilih Level -</option>
                             @foreach ($kategori as $k)
-                                <option value="{{ $k->kategori_id }}">{{ $k->kategori_nama }}</option>
+                                <option {{ $k->kategori_id == $user->kategori_id ? 'selected' : '' }} value="{{ $k->kategori_id }}">{{ $k->kategori_nama }}</option>
                             @endforeach
                         </select>
                         <small id="error-kategori_id" class="error-text form-text text-danger"></small>
@@ -85,12 +85,12 @@
                     },
                     harga_beli: {
                         required: true,
-                        min: 100000,      
+                        min: 1000,      
                         max: 2147483647
                     },
                     harga_jual: {
                         required: true,
-                        min: 100000,      
+                        min: 1000,      
                         max: 2147483647
                     }
                 },
