@@ -8,6 +8,7 @@ use App\Http\Controllers\SupplierController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\WelcomeController;
 use App\Models\BarangModel;
+use App\Models\SupplierModel;
 use Illuminate\Support\Facades\Route;
 
 
@@ -102,6 +103,10 @@ Route::middleware('auth')->group(function() {
         Route::post('/', [SupplierController::class, 'store']);
         Route::get('/create_ajax', [SupplierController::class, 'create_ajax']);
         Route::post('/ajax', [SupplierController::class, 'store_ajax']);
+        Route::get('/import', [SupplierController::class, 'import']);
+        Route::post('/import_ajax', [SupplierController::class, 'import_ajax']);
+        Route::get('/export_excel', [SupplierController::class, 'export_excel']);
+        Route::get('/export_pdf', [SupplierController::class, 'export_pdf']);
         Route::get('/{id}/show_ajax', [SupplierController::class, 'show_ajax']);
         Route::get('/{id}', [SupplierController::class, 'show']);
         Route::get('/{id}/edit', [SupplierController::class, 'edit']);
