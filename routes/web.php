@@ -7,8 +7,6 @@ use App\Http\Controllers\LevelController;
 use App\Http\Controllers\SupplierController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\WelcomeController;
-use App\Models\BarangModel;
-use App\Models\SupplierModel;
 use Illuminate\Support\Facades\Route;
 
 
@@ -54,6 +52,8 @@ Route::middleware('auth')->group(function() {
         Route::post('/import_ajax', [UserController::class, 'import_ajax']);
         Route::get('/export_excel', [UserController::class, 'export_excel']);
         Route::get('/export_pdf', [UserController::class, 'export_pdf']);
+        Route::get('/{id}/profile', [UserController::class, 'edit_profile']);
+        Route::post('/{id}/update_profile', [UserController::class, 'update_profile']);
         Route::get('/{id}/show_ajax', [UserController::class, 'show_ajax']);
         Route::get('/{id}/edit_ajax', [UserController::class, 'edit_ajax']);
         Route::put('/{id}/update_ajax', [UserController::class, 'update_ajax']);
@@ -64,8 +64,6 @@ Route::middleware('auth')->group(function() {
     Route::group(['prefix' => 'kategori'], function () {
         Route::get('/', [KategoriController::class, 'index']);
         Route::get('/list', [KategoriController::class, 'list']);
-        Route::get('/create', [KategoriController::class, 'create']);
-        Route::post('/', [KategoriController::class, 'store']); 
         Route::get('/create_ajax', [KategoriController::class, 'create_ajax']);
         Route::post('/ajax', [KategoriController::class, 'store_ajax']);
         Route::get('/import', [KategoriController::class, 'import']);
@@ -73,14 +71,10 @@ Route::middleware('auth')->group(function() {
         Route::get('/export_excel', [KategoriController::class, 'export_excel']);
         Route::get('/export_pdf', [KategoriController::class, 'export_pdf']);
         Route::get('/{id}/show_ajax', [KategoriController::class, 'show_ajax']);
-        Route::get('/{id}', [KategoriController::class, 'show']);
-        Route::get('/{id}/edit', [KategoriController::class, 'edit']);
-        Route::put('/{id}', [KategoriController::class, 'update']);
         Route::get('/{id}/edit_ajax', [KategoriController::class, 'edit_ajax']);
         Route::put('/{id}/update_ajax', [KategoriController::class, 'update_ajax']);
         Route::get('/{id}/delete_ajax', [KategoriController::class, 'confirm_ajax']);
         Route::delete('/{id}/delete_ajax', [KategoriController::class, 'delete_ajax']);
-        Route::delete('/{id}', [KategoriController::class, 'destroy']);
     });
 
     Route::group(['prefix' => 'barang', 'middleware' => 'authorize:ADM,MNG'], function () {

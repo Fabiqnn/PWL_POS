@@ -1,4 +1,14 @@
 <div class="sidebar">
+    <!-- Sidebar user panel (optional) -->
+    <div class="user-panel mt-3 pb-3 mb-3 d-flex {{ $activeMenu == 'dashboard' ? 'active' : '' }} ">
+        <div class="image">
+            <img src="{{ asset('profile_pict/'.auth()->user()->profile_picture) }}" class="img-circle elevation-2" alt="User Image">
+        </div>
+        <div class="info">
+            <a href="{{url('/user/'.auth()->user()->user_id.'/profile')}}" class="d-block"> {{auth()->user()->username}} </a>
+        </div>
+    </div>
+
     <!-- SidebarSearch Form -->
     <div class="form-inline mt-2">
         <div class="input-group" data-widget="sidebar-search">
